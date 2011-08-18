@@ -37,7 +37,7 @@ But about 3-4 times slower than a normal nginx installation.
 
 
 
-##dependencies
+#dependencies
 * express
 * running php-fpm server (same thing you would install if nginx is used)
 
