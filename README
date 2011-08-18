@@ -1,0 +1,46 @@
+php-express
+============================
+
+POST and Binary transport are supported
+
+Currently useful for rapid testing your php apps. 
+But about 3-4 times slower than a normal nginx installation. 
+
+
+
+    var express = require("express");
+
+    var app = express.createServer();
+
+    var options = {
+	    host: "127.0.0.1",
+	    port: "9000",
+	    root: __dirname + "/",
+	    server: {
+		    host: "127.0.0.1",
+		    port: 3005
+	    }
+    };
+
+    var agent = new php.Agent(4, options);
+
+    app.use(function (req, res, next) {
+	    var url = urlp.parse(req.url);
+	    var ext = path.extname(url.pathname);
+	    if(ext === ".php") {
+            agent.request(req,res,next);
+
+	    }else{
+            res.end()
+	    }
+    }).listen(options.server.port, options.server.host);
+
+
+
+##dependencies
+* express
+* running php-fpm server (same thing you would install if nginx is used)
+
+
+
+
