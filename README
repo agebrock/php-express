@@ -1,0 +1,47 @@
+php-express
+============================
+
+POST and Binary transport are supported
+    
+    var phpConfig = {
+	    host: "127.0.0.1",
+	    port: "9000", //php-fpm (can be unix.sock)
+	    root: __dirname,
+	    keepAlive:true,
+	    php:{
+	        SERVER_ADDR:"127.0.0.1", // only for $_SERVER setup
+	        SERVER_PORT:"80", // only for $_SERVER setup
+            SERVER_NAME:"localnode" // only for $_SERVER setup
+        }};
+
+    var app = express.createServer().
+    use(php(options.phpConfig)).
+    listen("3000");
+
+
+
+You can get about 600 requests/sec useing cluster 
+and about 200 requests/sec running express
+
+Concurrency Level:      100
+Time taken for tests:   1.498 seconds
+Complete requests:      1000
+Failed requests:        0
+Write errors:           0
+Total transferred:      54437000 bytes
+HTML transferred:       54328000 bytes
+Requests per second:    667.70 [#/sec] (mean)
+Time per request:       149.768 [ms] (mean)
+Time per request:       1.498 [ms] (mean, across all concurrent requests)
+Transfer rate:          35495.77 [Kbytes/sec] received
+
+
+
+
+##dependencies
+* express
+* running php-fpm server (same thing you would install if nginx is used)
+
+
+
+
